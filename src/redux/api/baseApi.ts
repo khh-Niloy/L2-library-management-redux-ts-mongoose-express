@@ -5,7 +5,7 @@ export const baseApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: "https://a3-ts-express-mongoose.vercel.app/api",
   }),
-  tagTypes: ["books"],
+  tagTypes: ["books", "borrow"],
   endpoints: (builder) => ({
     getAllBooks: builder.query({
       query: () => "/books",
@@ -19,14 +19,29 @@ export const baseApi = createApi({
       }),
       invalidatesTags: ["books"],
     }),
+    getSingleBooks: builder.query({
+      query: (id) => `/books/${id}`,
+    }),
+    getBorrowSummary: builder.query({
+      query: () => "/borrow",
+      providesTags: ["borrow"],
+    }),
+    borrowBook: builder.mutation({
+      query: (borrowBookData) => ({
+        url: "/borrow",
+        method: "POST",
+        body: borrowBookData,
+      }),
+      invalidatesTags: ["borrow"],
+    }),
   }),
 });
 
-// query: ({ id, ...patch }) => ({
-//         url: `post/${id}`,
-//         method: 'PATCH',
-//         body: patch,
-//       }),
-
-export const { useGetAllBooksQuery, useCreateBookMutation } = baseApi;
+export const {
+  useGetAllBooksQuery,
+  useCreateBookMutation,
+  useGetSingleBooksQuery,
+  useGetBorrowSummaryQuery,
+  useBorrowBookMutation,
+} = baseApi;
 // export const {useLazyGetAllBooksQuery} = baseApi

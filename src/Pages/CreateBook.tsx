@@ -38,18 +38,6 @@ export default function CreateBook() {
     }
   };
 
-  const formInputs = [
-    { label: "title", placeholder: "The Rebel" },
-    { label: "author", placeholder: "Kazi Nazrul Islam" },
-    { label: "genre", placeholder: "BIOGRAPHY" },
-    { label: "isbn", placeholder: "9789848815307" },
-    {
-      label: "description",
-      placeholder: "An English rebellion against oppression and injustice.",
-    },
-    { label: "copies", placeholder: "10" },
-  ];
-
   const genres = [
     "FICTION",
     "NON_FICTION",
@@ -66,39 +54,106 @@ export default function CreateBook() {
       <div className="w-[40%] mx-auto">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-            {formInputs.map(({ label, placeholder }) => (
-              <FormField
-                key={label}
-                control={form.control}
-                name={label}
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="capitalize">{label}</FormLabel>
-                    <FormControl>
-                      {label === "genre" ? (
-                        <Select
-                          onValueChange={field.onChange}
-                          defaultValue={field.value}
-                        >
-                          <SelectTrigger>
-                            <SelectValue placeholder="Select Genre" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            {genres.map((genre) => (
-                              <SelectItem key={genre} value={genre}>
-                                {genre}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
-                      ) : (
-                        <Input placeholder={placeholder} {...field} />
-                      )}
-                    </FormControl>
-                  </FormItem>
-                )}
-              />
-            ))}
+            {/* Title */}
+            <FormField
+              control={form.control}
+              name="title"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Title</FormLabel>
+                  <FormControl>
+                    <Input placeholder="The Rebel" {...field} />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
+
+            {/* Author */}
+            <FormField
+              control={form.control}
+              name="author"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Author</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Kazi Nazrul Islam" {...field} />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
+
+            {/* Genre */}
+            <FormField
+              control={form.control}
+              name="genre"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Genre</FormLabel>
+                  <FormControl>
+                    <Select
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                    >
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select Genre" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {genres.map((genre) => (
+                          <SelectItem key={genre} value={genre}>
+                            {genre}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </FormControl>
+                </FormItem>
+              )}
+            />
+
+            {/* ISBN */}
+            <FormField
+              control={form.control}
+              name="isbn"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>ISBN</FormLabel>
+                  <FormControl>
+                    <Input placeholder="9789848815307" {...field} />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
+
+            {/* Description */}
+            <FormField
+              control={form.control}
+              name="description"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Description</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder="An English rebellion against oppression and injustice."
+                      {...field}
+                    />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
+
+            {/* Copies */}
+            <FormField
+              control={form.control}
+              name="copies"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Copies</FormLabel>
+                  <FormControl>
+                    <Input placeholder="10" {...field} />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
 
             <Button type="submit">Submit</Button>
           </form>
