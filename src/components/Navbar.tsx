@@ -1,6 +1,20 @@
+import type { INavbar } from "@/interfaces/navbar.interface";
 import { Button } from "./ui/button";
+import { Link } from "react-router-dom";
 
 export default function Navbar() {
+  const navbarMenu: INavbar[] = [
+    { label: "All Books", links: "/all-books" },
+    { label: "Add Book", links: "/create-book" },
+    { label: "Borrow Summary", links: "/borrow-summary" },
+  ];
+
+  const navbarList = navbarMenu.map(({ label, links }) => (
+    <Link to={links}>
+      <li className="hover:font-medium">{label}</li>
+    </Link>
+  ));
+
   return (
     <div className="navbar bg-base-100 shadow-sm">
       <div className="navbar-start">
@@ -24,54 +38,17 @@ export default function Navbar() {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow space-x-10"
           >
-            <li>
-              <a>Item 1</a>
-            </li>
-            <li>
-              <a>Parent</a>
-              <ul className="p-2">
-                <li>
-                  <a>Submenu 1</a>
-                </li>
-                <li>
-                  <a>Submenu 2</a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a>Item 3</a>
-            </li>
+            {navbarList}
           </ul>
         </div>
         <a className="btn btn-ghost text-xl">daisyUI</a>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">
-          <li>
-            <a>Item 1</a>
-          </li>
-          <li>
-            <details>
-              <summary>Parent</summary>
-              <ul className="p-2">
-                <li>
-                  <a>Submenu 1</a>
-                </li>
-                <li>
-                  <a>Submenu 2</a>
-                </li>
-              </ul>
-            </details>
-          </li>
-          <li>
-            <a>Item 3</a>
-          </li>
-        </ul>
+        <ul className="menu menu-horizontal px-1 space-x-10">{navbarList}</ul>
       </div>
       <div className="navbar-end">
-        {/* <a className="btn">Button</a> */}
         <Button>Button</Button>
       </div>
     </div>
