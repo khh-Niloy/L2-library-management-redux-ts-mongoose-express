@@ -34,6 +34,14 @@ export const baseApi = createApi({
       }),
       invalidatesTags: ["borrow"],
     }),
+    updateBook: builder.mutation({
+      query: ({ updateBookData, id }) => ({
+        url: `/books/${id}`,
+        method: "PUT",
+        body: updateBookData,
+      }),
+      invalidatesTags: ["books"],
+    }),
   }),
 });
 
@@ -43,5 +51,6 @@ export const {
   useGetSingleBooksQuery,
   useGetBorrowSummaryQuery,
   useBorrowBookMutation,
+  useUpdateBookMutation,
 } = baseApi;
 // export const {useLazyGetAllBooksQuery} = baseApi

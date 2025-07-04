@@ -14,8 +14,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useGetSingleBooksQuery } from "@/redux/api/baseApi";
+import { useEffect } from "react";
+import { useForm } from "react-hook-form";
 
-export default function FormSubmit({ form, onSubmit }) {
+export default function FormSubmit({ onSubmit, updateBookInfo, update }) {
   const genres = [
     "FICTION",
     "NON_FICTION",
@@ -24,6 +27,21 @@ export default function FormSubmit({ form, onSubmit }) {
     "BIOGRAPHY",
     "FANTASY",
   ];
+
+  const form = useForm();
+
+  const { setValue } = form;
+
+  useEffect(() => {
+    if (update) {
+      setValue("title", updateBookInfo?.title);
+      setValue("author", updateBookInfo?.author);
+      setValue("genre", updateBookInfo?.genre);
+      setValue("isbn", updateBookInfo?.isbn);
+      setValue("description", updateBookInfo?.description);
+      setValue("copies", updateBookInfo?.copies);
+    }
+  }, [updateBookInfo, setValue]);
 
   return (
     <Form {...form}>
@@ -64,10 +82,7 @@ export default function FormSubmit({ form, onSubmit }) {
             <FormItem>
               <FormLabel>Genre</FormLabel>
               <FormControl>
-                <Select
-                  onValueChange={field.onChange}
-                  defaultValue={field.value}
-                >
+                <Select onValueChange={field.onChange} value={field.value}>
                   <SelectTrigger>
                     <SelectValue placeholder="Select Genre" />
                   </SelectTrigger>

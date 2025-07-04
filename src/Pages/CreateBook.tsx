@@ -15,12 +15,12 @@
 //   SelectTrigger,
 //   SelectValue,
 // } from "@/components/ui/select";
-import { useForm } from "react-hook-form";
+// import { useForm } from "react-hook-form";
 import { useCreateBookMutation } from "@/redux/api/baseApi";
 import FormSubmit from "@/components/FormSubmit";
 
 export default function CreateBook() {
-  const form = useForm();
+  // const form = useForm();
 
   const [createBook, { data, isLoading, isSuccess, isError }] =
     useCreateBookMutation();
@@ -44,7 +44,7 @@ export default function CreateBook() {
       <h1>CreateBook</h1>
 
       <div className="w-[40%] mx-auto">
-        <FormSubmit form={form} onSubmit={onSubmit} />
+        <FormSubmit onSubmit={onSubmit} />
       </div>
     </div>
   );
