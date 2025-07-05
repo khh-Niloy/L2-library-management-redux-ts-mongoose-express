@@ -5,7 +5,7 @@ export const baseApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: "https://a3-ts-express-mongoose.vercel.app/api",
   }),
-  tagTypes: ["books", "borrow"],
+  tagTypes: ["books", "borrow", "singleBook"],
   endpoints: (builder) => ({
     getAllBooks: builder.query({
       query: () => "/books",
@@ -21,6 +21,7 @@ export const baseApi = createApi({
     }),
     getSingleBooks: builder.query({
       query: (id) => `/books/${id}`,
+      providesTags: ["singleBook"],
     }),
     getBorrowSummary: builder.query({
       query: () => "/borrow",
@@ -40,7 +41,7 @@ export const baseApi = createApi({
         method: "PUT",
         body: updateBookData,
       }),
-      invalidatesTags: ["books"],
+      invalidatesTags: ["singleBook", "books"],
     }),
     deleteBook: builder.mutation({
       query: (id) => ({

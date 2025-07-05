@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 export default function Navbar() {
   const navbarMenu: INavbar[] = [
+    { label: "Home", links: "/" },
     { label: "All Books", links: "/all-books" },
     { label: "Add Book", links: "/create-book" },
     { label: "Borrow Summary", links: "/borrow-summary" },

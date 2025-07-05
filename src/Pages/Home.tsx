@@ -29,7 +29,11 @@ export default function Home() {
         </div>
         <h3 className="text-gray-500 text-sm mb-3">by {author}</h3>
         <p className="text-gray-700 text-sm mb-5 line-clamp-2">{description}</p>
-        <p className="text-sm font-medium text-green-600 mb-5">
+        <p
+          className={`text-sm font-medium ${
+            copies == 0 ? "text-red-600" : "text-green-600"
+          }  mb-5`}
+        >
           📦 {copies} Copies Available
         </p>
         <div className="flex flex-wrap gap-2">

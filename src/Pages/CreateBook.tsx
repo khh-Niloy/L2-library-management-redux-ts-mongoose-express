@@ -1,29 +1,11 @@
-// import React from "react";
-// import { Button } from "@/components/ui/button";
-// import {
-//   Form,
-//   FormControl,
-//   FormField,
-//   FormItem,
-//   FormLabel,
-// } from "@/components/ui/form";
-// import { Input } from "@/components/ui/input";
-// import {
-//   Select,
-//   SelectContent,
-//   SelectItem,
-//   SelectTrigger,
-//   SelectValue,
-// } from "@/components/ui/select";
-// import { useForm } from "react-hook-form";
 import { useCreateBookMutation } from "@/redux/api/baseApi";
 import FormSubmit from "@/components/FormSubmit";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 export default function CreateBook() {
-  // const form = useForm();
-
-  const [createBook, { data, isLoading, isSuccess, isError }] =
-    useCreateBookMutation();
+  const [createBook] = useCreateBookMutation();
+  const navigate = useNavigate();
 
   const onSubmit = async (data) => {
     try {
@@ -33,17 +15,26 @@ export default function CreateBook() {
         copies: parseInt(data.copies),
       };
       const res = await createBook(newBookData);
-      console.log(res);
+      // console.log(res);
+      toast.success("new book added!");
+      navigate("/all-books");
     } catch (error) {
       console.log(error);
     }
   };
 
   return (
-    <div>
-      <h1>CreateBook</h1>
+    <div className="min-h-screen bg-gradient-to-br from-[#f0f9ff] to-[#e0f2fe] flex items-center justify-center py-20 px-6">
+      <div className="w-full max-w-xl bg-white/60 backdrop-blur-2xl border border-gray-200 rounded-3xl shadow-2xl p-10">
+        <div className="text-center mb-8">
+          <h1 className="text-3xl font-bold text-gray-800">
+            📚 Add a New Book
+          </h1>
+          <p className="text-sm text-gray-500 mt-2">
+            Fill in the form below to add a new book to your library.
+          </p>
+        </div>
 
-      <div className="w-[40%] mx-auto">
         <FormSubmit onSubmit={onSubmit} />
       </div>
     </div>

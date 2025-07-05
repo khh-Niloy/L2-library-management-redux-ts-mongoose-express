@@ -7,8 +7,22 @@ import {
   Github,
   Mail,
 } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export default function Footer() {
+  const footerMenu = [
+    { label: "Home", links: "/" },
+    { label: "All Books", links: "/all-books" },
+    { label: "Add Book", links: "/create-book" },
+    { label: "Borrow Summary", links: "/borrow-summary" },
+  ];
+
+  const footerList = footerMenu.map(({ label, links }) => (
+    <Link to={links}>
+      <li className="hover:text-white transition">{label}</li>
+    </Link>
+  ));
+
   return (
     <footer className="bg-[#0f172a] text-white py-16 px-6 md:px-20 shadow-inner">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
@@ -26,28 +40,7 @@ export default function Footer() {
         {/* Navigation */}
         <div>
           <h3 className="text-lg font-semibold mb-4">Navigation</h3>
-          <ul className="space-y-2 text-gray-400 text-sm">
-            <li>
-              <a href="#" className="hover:text-white transition">
-                Home
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:text-white transition">
-                All Books
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:text-white transition">
-                Add Book
-              </a>
-            </li>
-            <li>
-              <a href="#" className="hover:text-white transition">
-                Borrow Summary
-              </a>
-            </li>
-          </ul>
+          <ul className="space-y-2 text-gray-400 text-sm">{footerList}</ul>
         </div>
 
         {/* Resources */}
