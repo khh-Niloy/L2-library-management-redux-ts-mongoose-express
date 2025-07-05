@@ -1,69 +1,52 @@
-# React + TypeScript + Vite
+# 📚 Library Management System - Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Project Overview
 
-Currently, two official plugins are available:
+This project is the **frontend client** for a Minimal Library Management System built with **React**, **TypeScript**, and **Redux Toolkit Query (RTK Query)**.  
+It allows users to browse books, perform CRUD operations, borrow books, and view borrowing summaries—all without authentication.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The frontend consumes RESTful API endpoints for backend interaction, focusing on clean UI design, type safety, and responsive user experience.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Features
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- **Book Management:**  
+  - View all books in a sortable and paginated table.  
+  - Create, update, and delete books via forms and confirmation dialogs.  
+  - Automatically mark books unavailable when copies reach zero.
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+- **Borrowing Books:**  
+  - Borrow books through a simple form selecting quantity and due date.  
+  - Validate borrowing quantity against available copies.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- **Borrow Summary:**  
+  - View aggregated data of total borrowed quantities per book.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+- **UI/UX:**  
+  - Clean, minimalist, and responsive design using Tailwind CSS.  
+  - Toast notifications for feedback on user actions.  
+  - Intuitive navigation with a navbar and footer.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- **Type-Safe Forms:**  
+  - Strongly typed forms with React Hook Form and TypeScript integration.
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+---
+
+## Tech Stack
+
+| Layer           | Technology                |
+|-----------------|---------------------------|
+| Frontend        | React + TypeScript        |
+| State Management| Redux Toolkit + RTK Query |
+| Styling         | Tailwind CSS              |
+| API Client      | RTK Query                 |
+| Forms           | React Hook Form           |
+| Notifications   | react-hot-toast           |
+| Routing         | React Router DOM          |
+
+
+<br/>
+> Developed by Hasib Hossain Niloy <br/>
+- email: khhniloy0@gmail.com <br/>
+- portfolio: https://niloy-portfolio.vercel.app/
