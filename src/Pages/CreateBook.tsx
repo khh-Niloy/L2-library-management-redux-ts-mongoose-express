@@ -7,15 +7,24 @@ export default function CreateBook() {
   const [createBook] = useCreateBookMutation();
   const navigate = useNavigate();
 
-  const onSubmit = async (data) => {
+  interface ICreateBook {
+    title: string;
+    author: string;
+    genre: string;
+    isbn: string;
+    description: string;
+    copies: string;
+    available: boolean;
+  }
+
+  const onSubmit = async (data: ICreateBook) => {
     try {
       const newBookData = {
         ...data,
         available: true,
-        copies: parseInt(data.copies),
+        copies: parseInt(data?.copies as string),
       };
-      const res = await createBook(newBookData);
-      // console.log(res);
+      await createBook(newBookData);
       toast.success("new book added!");
       navigate("/all-books");
     } catch (error) {

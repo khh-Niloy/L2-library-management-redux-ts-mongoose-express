@@ -3,6 +3,14 @@ import { useGetBorrowSummaryQuery } from "@/redux/api/baseApi";
 export default function BorrowSummary() {
   const { data, isLoading } = useGetBorrowSummaryQuery(undefined);
 
+  interface BorrowSummaryEntry {
+    book: {
+      title: string;
+      isbn: string;
+    };
+    totalQuantity: number;
+  }
+
   if (isLoading) {
     return (
       <div className="flex justify-center items-center h-[60vh]">
@@ -31,7 +39,7 @@ export default function BorrowSummary() {
               </tr>
             </thead>
             <tbody>
-              {data?.data?.map((entry, index: number) => (
+              {data?.data?.map((entry: BorrowSummaryEntry, index: number) => (
                 <tr
                   key={index}
                   className="border-b border-gray-200 hover:bg-white/80 transition"

@@ -7,18 +7,10 @@ import {
   FormLabel,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { useGetSingleBooksQuery } from "@/redux/api/baseApi";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 
-export default function FormSubmit({ onSubmit, updateBookInfo, update }) {
+export default function FormSubmit({ onSubmit, updateBookInfo, update }: any) {
   const genres = [
     "FICTION",
     "NON_FICTION",
@@ -30,7 +22,7 @@ export default function FormSubmit({ onSubmit, updateBookInfo, update }) {
 
   const form = useForm();
 
-  const { setValue } = form;
+  const { setValue, register } = form;
 
   useEffect(() => {
     if (update) {
@@ -78,11 +70,11 @@ export default function FormSubmit({ onSubmit, updateBookInfo, update }) {
         <FormField
           control={form.control}
           name="genre"
-          render={({ field }) => (
+          render={() => (
             <FormItem>
               <FormLabel>Genre</FormLabel>
               <FormControl>
-                <Select onValueChange={field.onChange} value={field.value}>
+                {/* <Select onValueChange={field.onChange} value={field.value}>
                   <SelectTrigger>
                     <SelectValue placeholder="Select Genre" />
                   </SelectTrigger>
@@ -93,7 +85,21 @@ export default function FormSubmit({ onSubmit, updateBookInfo, update }) {
                       </SelectItem>
                     ))}
                   </SelectContent>
-                </Select>
+                </Select> */}
+                <select
+                  {...register("genre")}
+                  defaultValue={updateBookInfo?.genre || ""}
+                  className="select"
+                >
+                  <option value="" disabled>
+                    Select Genre
+                  </option>
+                  {genres.map((genre) => (
+                    <option key={genre} value={genre}>
+                      {genre}
+                    </option>
+                  ))}
+                </select>
               </FormControl>
             </FormItem>
           )}

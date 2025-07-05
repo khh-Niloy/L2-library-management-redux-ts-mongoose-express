@@ -1,4 +1,4 @@
-import { ChevronDownIcon, ClockFading } from "lucide-react";
+import { ChevronDownIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import {
@@ -24,20 +24,24 @@ import { useNavigate, useParams } from "react-router-dom";
 import toast from "react-hot-toast";
 
 export default function BorrowBook() {
-  const form = useForm();
+  interface IBorrowBook {
+    dueDate: string;
+    quantity: string;
+  }
+  const form = useForm<IBorrowBook>();
   const { id } = useParams();
 
   const [open, setOpen] = React.useState(false);
   const [date, setDate] = React.useState<Date | undefined>(undefined);
 
-  const [borrowBook, { data, isLoading, isSuccess, isError }] =
+  const [borrowBook, { isLoading, isSuccess, isError }] =
     useBorrowBookMutation();
 
   const { data: singleData } = useGetSingleBooksQuery(id);
 
   const navigate = useNavigate();
 
-  const onSubmit = async (formData) => {
+  const onSubmit = async (formData: IBorrowBook) => {
     try {
       if (!date) {
         alert("Please select a due date");

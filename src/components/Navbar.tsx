@@ -1,5 +1,4 @@
 import type { INavbar } from "@/interfaces/navbar.interface";
-import { Button } from "./ui/button";
 import { Link } from "react-router-dom";
 
 export default function Navbar() {
@@ -39,7 +38,7 @@ export default function Navbar() {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow space-x-10"
+            className="menu menu-sm dropdown-content bg-base-100 text-black rounded-box z-1 mt-3 w-52 p-2 shadow space-x-10"
           >
             {navbarList}
           </ul>

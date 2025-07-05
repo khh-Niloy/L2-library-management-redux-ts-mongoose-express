@@ -1,4 +1,5 @@
 import FormSubmit from "@/components/FormSubmit";
+import type { IBook } from "@/interfaces/getBook.interface";
 import {
   useGetSingleBooksQuery,
   useUpdateBookMutation,
@@ -12,10 +13,12 @@ export default function UpdateBook() {
   const [updateBookInfo, { isSuccess }] = useUpdateBookMutation();
   const navigate = useNavigate();
 
-  const onSubmit = async (formData) => {
+  const onSubmit = async (
+    formData: Omit<IBook, "createdAt" | "updatedAt" | "_id" | "available">
+  ) => {
     try {
-      const res = await updateBookInfo({ updateBookData: formData, id });
-      // console.log(res);
+      console.log(formData);
+      await updateBookInfo({ updateBookData: formData, id });
       toast.success("Successfully updated book info");
       navigate("/all-books");
     } catch (error) {
