@@ -7,12 +7,17 @@ import BorrowSummary from "@/Pages/BorrowSummary";
 import SingleBook from "@/Pages/SingleBook";
 import UpdateBook from "@/Pages/UpdateBook";
 import BorrowBook from "@/Pages/BorrowBook";
+import Home from "@/Pages/Home";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     Component: MainLayout,
     children: [
+      {
+        path: "",
+        Component: Home,
+      },
       {
         path: "all-books",
         Component: Books,
@@ -37,10 +42,6 @@ export const router = createBrowserRouter([
         path: "borrow-summary",
         Component: BorrowSummary,
       },
-      // {
-      //   path: "/create-book",
-      //   Component: CreateBook
-      // },
     ],
   },
 ]);

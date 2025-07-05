@@ -11,12 +11,12 @@ export default function Navbar() {
 
   const navbarList = navbarMenu.map(({ label, links }) => (
     <Link to={links}>
-      <li className="hover:font-medium">{label}</li>
+      <li className="hover:font-medium hover:underline">{label}</li>
     </Link>
   ));
 
   return (
-    <div className="navbar bg-base-100 shadow-sm">
+    <div className="navbar bg-[#0f172a] text-white shadow-sm">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -43,14 +43,14 @@ export default function Navbar() {
             {navbarList}
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">daisyUI</a>
+        <Link to={"/"}>
+          <a className="btn btn-ghost text-xl">BookVault</a>
+        </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1 space-x-10">{navbarList}</ul>
       </div>
-      <div className="navbar-end">
-        <Button>Button</Button>
-      </div>
+      <div className="navbar-end"></div>
     </div>
   );
 }
